@@ -6,6 +6,7 @@ void Fill(int** a, const int rowCount, const int colCount, const int Low,
 	const int High);
 bool hasOnlyPositiveInRow(int** a, const int currentRow, const int colCount);
 int Sum(int** a, const int rowCount, const int colCount, int& sum);
+void SumDiagonal(int** a, const int sizearr, int& sumdiagonal);
 void Print(int** a, const int rowCount, const int colCount);
 int main()
 {
@@ -72,5 +73,14 @@ int Sum(int** a, const int rowCount, const int colCount, int& sum)
 		}
 
 	return sum;
+}
+
+void SumDiagonal(int** a, const int sizearr, int& sumdiagonal)
+{
+
+	for (int i = 0; i < sizearr; i++) {
+		sumdiagonal += a[i][i];
+	}
+	
 }
 
