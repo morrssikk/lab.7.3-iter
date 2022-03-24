@@ -18,14 +18,41 @@ int main()
 	int rowCount = sizearr;
 	int colCount = sizearr;
 	int sum = 0;
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+using namespace std;
+void Fill(int** a, const int rowCount, const int colCount, const int Low,
+	const int High);
+bool hasOnlyPositiveInRow(int** a, const int currentRow, const int colCount);
+int Sum(int** a, const int rowCount, const int colCount, int& sum);
+void SumDiagonal(int** a, const int sizearr, int& sumdiagonal);
+void Print(int** a, const int rowCount, const int colCount);
+int main()
+{
+	srand((unsigned)time(NULL));
+	int Low, High, sizearr;
+	cout << " Low= "; cin >> Low;
+	cout << " High= "; cin >> High;
+	cout << " sizearr= "; cin >> sizearr;
+	int rowCount = sizearr;
+	int colCount = sizearr;
+	int sum = 0;
+	int sumdiagonal = 0;
 	int** a = new int* [rowCount];
 	for (int i = 0; i < rowCount; i++)
 		a[i] = new int[colCount];
 	Fill(a, rowCount, colCount, Low, High);
 	Print(a, rowCount, colCount);
-	
+
 	Sum(a, rowCount, colCount, sum);
-		cout << "sum positive rows" << setw(4) << sum;
+		cout << "sum positive rows" << setw(4) << sum << endl;
+
+		SumDiagonal(a, sizearr, sumdiagonal);
+		cout << "sumdiagonal" << setw(4) << sumdiagonal << endl;
+		
+		
+
 	
 
 	return 0;
@@ -83,4 +110,6 @@ void SumDiagonal(int** a, const int sizearr, int& sumdiagonal)
 	}
 	
 }
+
+
 
