@@ -1,24 +1,4 @@
-﻿#include <iostream>
-#include <iomanip>
-#include <time.h>
-using namespace std;
-void Fill(int** a, const int rowCount, const int colCount, const int Low,
-	const int High);
-bool hasOnlyPositiveInRow(int** a, const int currentRow, const int colCount);
-int Sum(int** a, const int rowCount, const int colCount, int& sum);
-void SumDiagonal(int** a, const int sizearr, int& sumdiagonal);
-void Print(int** a, const int rowCount, const int colCount);
-int main()
-{
-	srand((unsigned)time(NULL));
-	int Low, High, sizearr;
-	cout << " Low= "; cin >> Low;
-	cout << " High= "; cin >> High;
-	cout << " sizearr= "; cin >> sizearr;
-	int rowCount = sizearr;
-	int colCount = sizearr;
-	int sum = 0;
-#include <iostream>
+ #include <iostream>
 #include <iomanip>
 #include <time.h>
 using namespace std;
@@ -110,6 +90,8 @@ void SumDiagonal(int** a, const int sizearr, int& sumdiagonal)
 	}
 	
 }
+
+
 
 
 
