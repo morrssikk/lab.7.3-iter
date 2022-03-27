@@ -1,4 +1,4 @@
- #include <iostream>
+#include <iostream>
 #include <iomanip>
 #include <time.h>
 using namespace std;
@@ -6,7 +6,7 @@ void Fill(int** a, const int rowCount, const int colCount, const int Low,
 	const int High);
 bool hasOnlyPositiveInRow(int** a, const int currentRow, const int colCount);
 int Sum(int** a, const int rowCount, const int colCount, int& sum);
-void SumDiagonal(int** a, const int sizearr, int& sumdiagonal);
+void maxSumInDiadonal(int** a, const int rowCount, int& maxSum);
 void Print(int** a, const int rowCount, const int colCount);
 int main()
 {
@@ -18,7 +18,7 @@ int main()
 	int rowCount = sizearr;
 	int colCount = sizearr;
 	int sum = 0;
-	int sumdiagonal = 0;
+	int maxSum = 0;
 	int** a = new int* [rowCount];
 	for (int i = 0; i < rowCount; i++)
 		a[i] = new int[colCount];
@@ -28,13 +28,11 @@ int main()
 	Sum(a, rowCount, colCount, sum);
 		cout << "sum positive rows" << setw(4) << sum << endl;
 
-		SumDiagonal(a, sizearr, sumdiagonal);
-		cout << "sumdiagonal" << setw(4) << sumdiagonal << endl;
-		
-		
+		maxSumInDiadonal(a, rowCount, maxSum);
+		cout << "maxSum" << setw(4) << maxSum << endl;
 
 	
-
+		
 	return 0;
 }
 
@@ -82,16 +80,40 @@ int Sum(int** a, const int rowCount, const int colCount, int& sum)
 	return sum;
 }
 
-void SumDiagonal(int** a, const int sizearr, int& sumdiagonal)
-{
 
-	for (int i = 0; i < sizearr; i++) {
-		sumdiagonal += a[i][i];
+
+void maxSumInDiadonal(int** a, const int rowCount, int& maxSum) {
+	bool reverse = false;
+	int shift = 0;
+	maxSum = a[rowCount - 1][rowCount - 1];
+	int reversStartIndex = 0;
+
+	for (int i = 0; i < 2 * rowCount - 1; i++) {
+		int currentSum = 0;
+		int cr = reversStartIndex;
+
+		for (; cr < i - shift + 1; cr++) {
+			int cc;
+			if (!reverse) {
+				cc = cr + rowCount + shift - i - 1;
+			}
+			else {
+				cc = cr - shift;
+			}
+
+			currentSum += a[cr][cc];
+		}
+
+		if (cr == rowCount) {
+			reverse = true;
+			reversStartIndex++;
+			shift++;
+		}
+
+		if (currentSum > maxSum) {
+			maxSum = currentSum;
+		}
 	}
-	
 }
-
-
-
 
 
